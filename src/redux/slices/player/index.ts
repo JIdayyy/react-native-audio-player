@@ -12,6 +12,10 @@ const initialState: IPlayer = {
     songIndex: 0,
     volume: 50,
     soundWave: [],
+    loaders: {
+        songs: false,
+        soundWave: false,
+    },
 };
 
 interface IPlayer {
@@ -24,6 +28,10 @@ interface IPlayer {
     songIndex: number;
     selectedSong: Song | null;
     soundWave: number[];
+    loaders: {
+        songs: boolean;
+        soundWave: boolean;
+    };
 }
 
 const counterSlice = createSlice({
@@ -71,10 +79,18 @@ const counterSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getAllSongs.fulfilled, (state, action) => {
+            state.loaders.songs = false;
             state.songs = action.payload || [];
         });
+        builder.addCase(getAllSongs.pending, (state) => {
+            state.loaders.songs = true;
+        });
         builder.addCase(getSoundWave.fulfilled, (state, action) => {
+            state.loaders.soundWave = false;
             state.soundWave = action.payload || [];
+        });
+        builder.addCase(getSoundWave.pending, (state) => {
+            state.loaders.soundWave = true;
         });
     },
 });

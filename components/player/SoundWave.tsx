@@ -1,10 +1,15 @@
-import { Flex } from "native-base";
+import { Flex, Spinner } from "native-base";
 import { useAppSelector } from "../../src/redux/store";
-import SoundWaveCursor from "./SoundWaveCursor";
 import SoundWaveItem from "./SoundWaveItem";
 
 export default function SoundWave(): JSX.Element {
-    const { soundWave } = useAppSelector((state) => state.rootReducer.player);
+    const { soundWave, loaders } = useAppSelector(
+        (state) => state.rootReducer.player,
+    );
+
+    if (loaders.soundWave) {
+        return <Spinner />;
+    }
 
     return (
         <Flex
@@ -16,10 +21,8 @@ export default function SoundWave(): JSX.Element {
         >
             {soundWave.length > 1 &&
                 soundWave.map((item, index) => (
-                    <SoundWaveItem key={index} item={item} />
+                    <SoundWaveItem key={index} index={index} item={item} />
                 ))}
-
-            <SoundWaveCursor />
         </Flex>
     );
 }

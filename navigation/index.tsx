@@ -18,8 +18,8 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import Home from "../screens/Home";
+import Library from "../screens/TabTwoScreen";
 import {
     RootStackParamList,
     RootTabParamList,
@@ -31,7 +31,7 @@ export default function Navigation({
     colorScheme,
 }: {
     colorScheme: ColorSchemeName;
-}) {
+}): JSX.Element {
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
@@ -79,18 +79,18 @@ function BottomTabNavigator() {
 
     return (
         <BottomTab.Navigator
-            initialRouteName="TabOne"
+            initialRouteName="Home"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
             }}
         >
             <BottomTab.Screen
-                name="TabOne"
-                component={TabOneScreen}
-                options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-                    title: "Tab One",
+                name="Home"
+                component={Home}
+                options={({ navigation }: RootTabScreenProps<"Home">) => ({
+                    title: "Home",
                     tabBarIcon: ({ color }) => (
-                        <TabBarIcon name="code" color={color} />
+                        <TabBarIcon name="home" color={color} />
                     ),
                     headerRight: () => (
                         <Pressable
@@ -110,12 +110,12 @@ function BottomTabNavigator() {
                 })}
             />
             <BottomTab.Screen
-                name="TabTwo"
-                component={TabTwoScreen}
+                name="Library"
+                component={Library}
                 options={{
-                    title: "Tab Two",
+                    title: "Library",
                     tabBarIcon: ({ color }) => (
-                        <TabBarIcon name="code" color={color} />
+                        <TabBarIcon name="music" color={color} />
                     ),
                 }}
             />
