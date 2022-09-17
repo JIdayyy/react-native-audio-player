@@ -6,23 +6,10 @@ import { usePlaybackObject } from "../../src/context/playbackObjectContext";
 import { StyleSheet } from "react-native";
 
 export default function Controls(): JSX.Element {
-    const { handleAudioPlay, setNextSong, volume, handleVolume, handlePause } =
-        usePlayer();
+    const { handleAudioPlay, setNextSong, handlePause } = usePlayer();
 
     return (
         <Flex direction="column" position="relative" w="100%" h="100px">
-            <Slider
-                colorScheme="red"
-                w="full"
-                onChange={handleVolume}
-                maxValue={100}
-                value={volume}
-            >
-                <Slider.Track>
-                    <Slider.FilledTrack />
-                </Slider.Track>
-                <Slider.Thumb />
-            </Slider>
             <Flex
                 direction="row"
                 justifyContent="space-around"
@@ -52,12 +39,12 @@ export default function Controls(): JSX.Element {
                         color="black"
                     />
                 </Flex>
-                {/* <Icon
+                <Icon
                     onPress={handlePause}
                     name="pause"
                     size={30}
                     color="white"
-                /> */}
+                />
                 <Icon
                     onPress={setNextSong}
                     name="forward"

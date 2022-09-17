@@ -2,6 +2,7 @@ import { Flex, Slider, Text, Image, Box } from "native-base";
 import Controls from "./Controls";
 import { useAppSelector } from "../../src/redux/store";
 import SoundWave from "./SoundWave";
+import HMSTime from "./HMSTime";
 
 export default function Player(): JSX.Element {
     const { selectedSong } = useAppSelector(
@@ -37,10 +38,11 @@ export default function Player(): JSX.Element {
             <Text fontSize={20} fontWeight="bold" color="white">
                 {selectedSong?.title}
             </Text>
-            <Text fontSize={20} fontWeight="bold" color="white">
+            <Text fontSize={15} fontWeight="thin" color="gray.400">
                 {selectedSong?.artist.name}
             </Text>
             <SoundWave />
+            <HMSTime />
             <Controls />
         </Flex>
     );
