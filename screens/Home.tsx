@@ -1,3 +1,4 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import Player from "../components/player";
 import PlaybackObjectProvider from "../src/context/playbackObjectContext";
 import { RootTabScreenProps } from "../types";

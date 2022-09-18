@@ -1,5 +1,4 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
     NativeBaseProvider,
     extendTheme,
@@ -14,6 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Provider } from "react-redux";
 import store from "./src/redux/store";
 import getAllSongs from "./src/redux/thunk/songs";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const newColorTheme = {
     brand: {

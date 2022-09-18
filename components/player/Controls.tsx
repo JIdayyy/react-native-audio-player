@@ -1,13 +1,13 @@
-import { Box, Flex, Slider } from "native-base";
+import { Flex } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome";
 import usePlayer from "../../hooks/usePlayer";
-import { LinearGradient } from "expo-linear-gradient";
-import { usePlaybackObject } from "../../src/context/playbackObjectContext";
+
 import { StyleSheet } from "react-native";
+import { useAppSelector } from "../../src/redux/store";
 
 export default function Controls(): JSX.Element {
     const { handleAudioPlay, setNextSong, handlePause } = usePlayer();
-
+    const { isPlaying } = useAppSelector((state) => state.rootReducer.player);
     return (
         <Flex direction="column" position="relative" w="100%" h="100px">
             <Flex
@@ -23,28 +23,41 @@ export default function Controls(): JSX.Element {
                     size={30}
                     color="white"
                 />
-                <Flex
-                    style={style.shadow}
-                    justifyContent="center"
-                    alignItems="center"
-                    backgroundColor="white"
-                    rounded="full"
-                    width={60}
-                    height={60}
-                >
-                    <Icon
-                        onPress={handleAudioPlay}
-                        name="play"
-                        size={30}
-                        color="black"
-                    />
-                </Flex>
-                <Icon
-                    onPress={handlePause}
-                    name="pause"
-                    size={30}
-                    color="white"
-                />
+                {!isPlaying ? (
+                    <Flex
+                        style={style.shadow}
+                        justifyContent="center"
+                        alignItems="center"
+                        backgroundColor="white"
+                        rounded="full"
+                        width={60}
+                        height={60}
+                    >
+                        <Icon
+                            onPress={handleAudioPlay}
+                            name="play"
+                            size={30}
+                            color="black"
+                        />
+                    </Flex>
+                ) : (
+                    <Flex
+                        style={style.shadow}
+                        justifyContent="center"
+                        alignItems="center"
+                        backgroundColor="white"
+                        rounded="full"
+                        width={60}
+                        height={60}
+                    >
+                        <Icon
+                            onPress={handlePause}
+                            name="pause"
+                            size={30}
+                            color="black"
+                        />
+                    </Flex>
+                )}
                 <Icon
                     onPress={setNextSong}
                     name="forward"
@@ -61,10 +74,10 @@ const style = StyleSheet.create({
         shadowColor: "#FFFFFF",
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 0,
         },
-        shadowOpacity: 0.53,
-        shadowRadius: 13.97,
-        elevation: 21,
+        shadowOpacity: 0.7,
+        shadowRadius: 30,
+        elevation: 10,
     },
 });

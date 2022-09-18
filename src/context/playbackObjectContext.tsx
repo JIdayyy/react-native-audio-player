@@ -10,16 +10,23 @@ import {
 } from "react";
 import { useDispatch } from "react-redux";
 import {
+    setIsOnPause,
+    setIsOnPlay,
     setNextSongIndex,
-    setSongDuration,
-    setSongPosition,
 } from "../redux/slices/player";
+import { setSongDuration, setSongPosition } from "../redux/slices/songPosition";
 import { useAppSelector } from "../redux/store";
 
 type PlaybackObjectContextType = {
     playbackObject: Audio.Sound | null;
     setPlaybackObject: Dispatch<SetStateAction<Audio.Sound | null>>;
 };
+
+function isStatusSuccess(
+    status: AVPlaybackStatus,
+): status is AVPlaybackStatusSuccess {
+    return (status as AVPlaybackStatusSuccess) !== undefined;
+}
 
 const PlaybackObjectContext = createContext<PlaybackObjectContextType | null>(
     null,
@@ -35,7 +42,7 @@ const PlaybackObjectProvider = ({
     );
     const { songs } = useAppSelector((state) => state.rootReducer.player);
     const initialStatus = {
-        shouldPlay: true,
+        shouldPlay: false,
     };
     const dispatch = useDispatch();
 
@@ -56,16 +63,27 @@ const PlaybackObjectProvider = ({
         }
     }, [songs]);
 
-    const onPlaybackStatusUpdate = (status: any) => {
-        dispatch(setSongPosition(status.positionMillis));
-        dispatch(setSongDuration(status.durationMillis));
-        if (
-            status.positionMillis === status.durationMillis &&
-            status.positionMillis !== 0 &&
-            status.positionMillis
-        ) {
-            dispatch(setNextSongIndex());
+    const onPlaybackStatusUpdate = (status: AVPlaybackStatus) => {
+        if (isStatusSuccess(status)) {
+            if (status.isPlaying) {
+                dispatch(setIsOnPlay());
+            }
+            if (!status.isPlaying) {
+                dispatch(setIsOnPause());
+            }
+            dispatch(setSongDuration(status.durationMillis));
+            dispatch(setSongPosition(status.positionMillis));
         }
+
+        // if (status) {
+        //     if (status.didJustFinish) {
+        //         dispatch(setNextSongIndex());
+        //     }
+        //     if (status.isLoaded) {
+        //         dispatch(setSongDuration(status.durationMillis));
+        //         dispatch(setSongPosition(status.positionMillis));
+        //     }
+        // }
     };
 
     return (
