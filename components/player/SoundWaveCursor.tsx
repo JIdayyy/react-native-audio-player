@@ -3,7 +3,7 @@ import { useAppSelector } from "../../src/redux/store";
 
 export default function SoundWaveCursor(): JSX.Element {
     const { position, duration } = useAppSelector(
-        (state) => state.rootReducer.player,
+        (state) => state.rootReducer.songPosition,
     );
 
     const positionPercent = (position / duration) * 100;

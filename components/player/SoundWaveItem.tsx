@@ -1,5 +1,4 @@
 import { Box } from "native-base";
-import { useCallback } from "react";
 import { useAppSelector } from "../../src/redux/store";
 
 interface IProps {
@@ -9,7 +8,7 @@ interface IProps {
 
 export default function SoundWaveItem({ item, index }: IProps): JSX.Element {
     const { position, duration } = useAppSelector(
-        (state) => state.rootReducer.player,
+        (state) => state.rootReducer.songPosition,
     );
 
     const positionPercent = (position / duration) * 100;

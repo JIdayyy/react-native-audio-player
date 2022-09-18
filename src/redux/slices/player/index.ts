@@ -4,9 +4,7 @@ import getSoundWave from "../../thunk/soundWave";
 
 const initialState: IPlayer = {
     songs: [],
-    duration: 0,
     selectedSong: null,
-    position: 0,
     showPlaylist: true,
     isPlaying: false,
     songIndex: 0,
@@ -21,8 +19,6 @@ const initialState: IPlayer = {
 interface IPlayer {
     volume: number;
     songs: Song[];
-    duration: number;
-    position: number;
     showPlaylist: boolean;
     isPlaying: boolean;
     songIndex: number;
@@ -34,25 +30,16 @@ interface IPlayer {
     };
 }
 
-const counterSlice = createSlice({
+const playerSlice = createSlice({
     name: "player",
     initialState,
     reducers: {
-        setSongDuration: (state, action) => {
-            state.duration = action.payload;
-        },
         setSelectedSong: (state, action) => {
             const songId = state.songs.findIndex(
                 (song) => song.id === action.payload,
             );
             state.songIndex = songId;
             state.selectedSong = state.songs[songId];
-        },
-        setSongPosition: (state, action) => {
-            state.position = action.payload;
-        },
-        setDuration: (state, action) => {
-            state.duration = action.payload;
         },
         setShowPlaylist: (state) => {
             state.showPlaylist = !state.showPlaylist;
@@ -100,11 +87,9 @@ export const {
     setNextSongIndex,
     setSongDuration,
     setSelectedSong,
-    setSongPosition,
-    setDuration,
     setShowPlaylist,
     setIsOnPause,
     setIsOnPlay,
-} = counterSlice.actions;
+} = playerSlice.actions;
 
-export default counterSlice.reducer;
+export default playerSlice.reducer;
