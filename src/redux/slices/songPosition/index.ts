@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: ISongPositionState = {
-    position: 0,
-    duration: 0,
-};
-
 interface ISongPositionState {
     position: number;
     duration: number;
 }
+
+const initialState: ISongPositionState = {
+    position: 0,
+    duration: 0,
+};
 
 const songPosition = createSlice({
     name: "songPosition",

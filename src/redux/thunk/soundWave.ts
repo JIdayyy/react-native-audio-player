@@ -1,5 +1,6 @@
-import axiosInstance from "../../utils/axiosInstance";
+/* eslint-disable consistent-return */
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axiosInstance from "../../utils/axiosInstance";
 
 const getSoundWave = createAsyncThunk(
     "song/getSoundWave",

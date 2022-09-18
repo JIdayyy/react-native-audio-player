@@ -1,12 +1,13 @@
+import { Song } from "../../../interfaces/player";
 import { createSlice } from "@reduxjs/toolkit";
-
-const initialState: ISongList = {
-    focusedSong: null,
-};
 
 interface ISongList {
     focusedSong: Song | null;
 }
+
+const initialState: ISongList = {
+    focusedSong: null,
+};
 
 const songListSlice = createSlice({
     name: "songlist",

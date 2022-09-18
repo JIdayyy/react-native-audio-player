@@ -18,9 +18,13 @@ declare global {
     }
 }
 
+export type AuthStackParamList = {
+    SignIn: undefined;
+    SignUp: undefined;
+};
+
 export type RootStackParamList = {
     Root: NavigatorScreenParams<RootTabParamList> | undefined;
-    Home: undefined;
     Modal: undefined;
     NotFound: undefined;
 };

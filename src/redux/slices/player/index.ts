@@ -1,20 +1,6 @@
-import getAllSongs from "../../thunk/songs";
 import { createSlice } from "@reduxjs/toolkit";
+import getAllSongs from "../../thunk/songs";
 import getSoundWave from "../../thunk/soundWave";
-
-const initialState: IPlayer = {
-    songs: [],
-    selectedSong: null,
-    showPlaylist: true,
-    isPlaying: false,
-    songIndex: 0,
-    volume: 50,
-    soundWave: [],
-    loaders: {
-        songs: false,
-        soundWave: false,
-    },
-};
 
 interface IPlayer {
     volume: number;
@@ -29,6 +15,20 @@ interface IPlayer {
         soundWave: boolean;
     };
 }
+
+const initialState: IPlayer = {
+    songs: [],
+    selectedSong: null,
+    showPlaylist: true,
+    isPlaying: false,
+    songIndex: 0,
+    volume: 50,
+    soundWave: [],
+    loaders: {
+        songs: false,
+        soundWave: false,
+    },
+};
 
 const playerSlice = createSlice({
     name: "player",

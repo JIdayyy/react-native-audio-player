@@ -1,5 +1,6 @@
-import axiosInstance from "../../utils/axiosInstance";
+/* eslint-disable consistent-return */
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axiosInstance from "../../utils/axiosInstance";
 
 const getAllSongs = createAsyncThunk(
     "song/getAll",
@@ -8,6 +9,7 @@ const getAllSongs = createAsyncThunk(
             const { data } = await axiosInstance.get<Song[]>("/songs");
             return data;
         } catch (error) {
+            console.log(error);
             rejectWithValue(error);
         }
     },

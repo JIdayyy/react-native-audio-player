@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { songApi } from "./services/songs";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-
+import { songApi } from "./services/songs";
 import rootReducer, { RootState } from "./reducers";
 
 export const store = configureStore({
