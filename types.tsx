@@ -5,40 +5,41 @@
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {
-    CompositeScreenProps,
-    NavigatorScreenParams,
+  CompositeScreenProps,
+  NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 declare global {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace ReactNavigation {
-        // eslint-disable-next-line @typescript-eslint/no-empty-interface
-        interface RootParamList extends RootStackParamList {}
-    }
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace ReactNavigation {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface RootParamList extends RootStackParamList {}
+  }
 }
 
 export type AuthStackParamList = {
-    SignIn: undefined;
-    SignUp: undefined;
+  SignIn: undefined;
+  SignUp: undefined;
 };
 
 export type RootStackParamList = {
-    Root: NavigatorScreenParams<RootTabParamList> | undefined;
-    Modal: undefined;
-    NotFound: undefined;
+  Root: NavigatorScreenParams<RootTabParamList> | undefined;
+  Modal: undefined;
+  NotFound: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-    NativeStackScreenProps<RootStackParamList, Screen>;
+  NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-    Home: undefined;
-    Library: undefined;
+  Home: undefined;
+  Library: undefined;
+  Upload: NavigatorScreenParams<any>;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
-    CompositeScreenProps<
-        BottomTabScreenProps<RootTabParamList, Screen>,
-        NativeStackScreenProps<RootStackParamList>
-    >;
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;

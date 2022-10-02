@@ -5,12 +5,12 @@ import { songApi } from "./services/songs";
 import rootReducer, { RootState } from "./reducers";
 
 export const store = configureStore({
-    reducer: {
-        rootReducer,
-        [songApi.reducerPath]: songApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(songApi.middleware),
+  reducer: {
+    rootReducer,
+    [songApi.reducerPath]: songApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(songApi.middleware),
 });
 
 setupListeners(store.dispatch);

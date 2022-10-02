@@ -15,14 +15,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { signInThunk, signUpThunk } from "../../src/redux/thunk/auth";
 
-export default function SignUpScreen({ navigation }): JSX.Element {
+export default function SignInScreen({ navigation }): JSX.Element {
   const dispatch = useAppDispatch();
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data: FieldValues) => {
     dispatch(
-      signUpThunk({
-        username: data.username,
+      signInThunk({
         password: data.password,
         email: data.email,
       })
@@ -30,7 +29,7 @@ export default function SignUpScreen({ navigation }): JSX.Element {
   };
 
   const handlePress = () => {
-    navigation.navigate("SignIn");
+    navigation.navigate("SignUp");
   };
 
   return (
@@ -46,26 +45,12 @@ export default function SignUpScreen({ navigation }): JSX.Element {
       >
         <Flex justifyContent="center" w="full" h="full" p={5}>
           <Text w="full" my={1} fontSize={55} color="white">
-            Sign Up to Wildify
+            Sign In to Wildify
           </Text>
           <Text w="full" mb={10} fontSize={20} color="gray.400">
-            to start listening and share your favorites songs
+            to beggin your journey
           </Text>
           <VStack space={5}>
-            <ControlledInput
-              icon={
-                <AntDesign
-                  style={{ marginRight: 10 }}
-                  name="user"
-                  size={15}
-                  color="gray"
-                />
-              }
-              control={control}
-              name="username"
-              placeholder="Username"
-            />
-
             <ControlledInput
               icon={
                 <Entypo
@@ -93,19 +78,6 @@ export default function SignUpScreen({ navigation }): JSX.Element {
               name="password"
               placeholder="Password"
             />
-            <ControlledInput
-              icon={
-                <FontAwesome5
-                  style={{ marginRight: 10 }}
-                  name="key"
-                  size={15}
-                  color="gray"
-                />
-              }
-              control={control}
-              name="password-confirmation"
-              placeholder="Password confirmation"
-            />
 
             <Button
               onPress={handleSubmit(onSubmit)}
@@ -114,10 +86,10 @@ export default function SignUpScreen({ navigation }): JSX.Element {
               color="#171C26"
               my={10}
             >
-              Sign Up
+              Sign In
             </Button>
             <Text onPress={handlePress} fontSize={12} color="white">
-              Allready got an account ? Sign in here !
+              No account yet ? Sign up here !
             </Text>
           </VStack>
         </Flex>

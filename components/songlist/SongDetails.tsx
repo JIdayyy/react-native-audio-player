@@ -5,13 +5,22 @@ import { EvilIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 import { setSelectedSong } from "../../src/redux/slices/player";
+import { usePlaybackObject } from "../../src/context/playbackObjectContext";
 
 export default function SongDetails(): JSX.Element {
-  const { selectedSong } = useAppSelector((state) => state.rootReducer.player);
+  const selectedSong = useAppSelector(
+    (state) => state.rootReducer.player.selectedSong
+  );
+
+  const {
+    methods: { handleAudioPlay },
+  } = usePlaybackObject();
 
   const dispatch = useAppDispatch();
 
-  const { focusedSong } = useAppSelector((state) => state.rootReducer.songList);
+  const focusedSong = useAppSelector(
+    (state) => state.rootReducer.songList.focusedSong
+  );
 
   const onPreview = focusedSong ? focusedSong : selectedSong;
 

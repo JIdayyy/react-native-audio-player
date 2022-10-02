@@ -1,10 +1,8 @@
 import { Foundation } from "@expo/vector-icons";
 import { Box, Flex, Text } from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
 import SongPreview from "../components/preview";
 import SongList from "../components/songlist";
 import SongDetails from "../components/songlist/SongDetails";
-import PlaybackObjectProvider from "../src/context/playbackObjectContext";
 
 export default function TabTwoScreen(): JSX.Element {
   return (
